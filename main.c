@@ -1,60 +1,62 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char** argv) {
+int main() {
+
     float a, b;
-    int scelta;
-    float risultato, frazionale;
+    float risultato, frazionale=0;
+    int operazione;
+    float f;
+    float r;
+    int q;
+    float pippo;
+    int t;
     
-    puts("Benvenuto nel SuperCaolcolatore, il piu' innovativo software di calcolo presente sul mercato.\n");
-    printf("Inserisci a, il primo operando (frazionale): ");
-    scanf("%f", &a);
-    printf("Inserisci b, il secondo operando (frazionale): ");
-    scanf("%f", &b);
+        printf("\nInserire primo opeando (a) ");
+        scanf("%f",&a);
+        printf("\nInserire secondo operando (b) ");
+        scanf("%f", &b);
+        printf("\n1-moltiplicazione; \n2-divisione; \n3-elevazione a potenza; \n4-divisione normale con il resto; \n5-addizione; \n6-sottrazione\n");
+        printf("Scegli l'operazione ");
+        scanf("%d", &operazione);
+                
+            switch (operazione) {
+                    case 1:
+                        risultato=a*b; 
+                        printf("%f*%f=%f\n", a, b, risultato);
+                        break;
+                    case 2:
+                        risultato=a/b; 
+                        printf("%f/%f=%f\n", a, b, risultato);
+                        break;
+                    case 3:
+                        q=0;
+                        risultato=1;
+                        while (q<b) {
+                            risultato*=a;
+                            q++;
+                        }       
+                        printf("%f^%d=%f\n", a, (int)b, risultato);       
+                        break;
+                    case 4: 
+                        pippo= a/b;
+                        t= (int) a/b;
+                        printf("\nLa parte intera e': %d", t);
+                        r= pippo - t;
+                        printf("\nIl resto e': %f", r); 
+                        printf("%f/%f= %d (intera) e %f (frazionale)\n", a, b, (int)risultato, frazionale);
+                        break;
+                    case 5:
+                        risultato=a+b; 
+                        printf("%f+%f=%f\n", a, b, risultato);
+                        break;
+                    case 6:
+                        risultato=a-b; 
+                        printf("%f-%f=%f\n", a, b, risultato);
+                        break;
+                    default:;
+            }
+            
+    return 0;
     
-    getchar();
-    /* La presenza di questa chiamata alla funzione getchar() è dovuto al funzionamento
-     * "buffered line" definito dallo standard POSIX.
-     */
-    
-    puts("\nOperazioni:");
-    puts("1 -  Somma a+b");
-    puts("2 -  Sottrazione a-b");
-    puts("3 -  Moltiplicazione a*b");
-    puts("4 -  Divisione a/b con risultato frazionale");
-    puts("5 -  Disione a/b con parte intera e parte frazionale");
-    puts("6 -  Elevamento a potenza a^b (l'esponente è troncato ad intero)");
-    scelta = getchar();
-    scelta = scelta - '0';
-    
-    switch(scelta) {
-        case 1:
-            risultato = 0;
-            printf("%f+%f=%f\n", a, b, risultato);
-            break;
-        case 2:
-            risultato = 0;
-            printf("%f-%f=%f\n", a, b, risultato);
-            break;
-        case 3:
-            risultato = 0;
-            printf("%f*%f=%f\n", a, b, risultato);
-            break;
-        case 4:
-            risultato = 0;
-            printf("%f/%f=%f\n", a, b, risultato);
-            break;
-        case 5:
-            risultato = 0;
-            frazionale = 0;
-            printf("%f/%f= %d (intera) e %f (frazionale)\n", a, b, (int)risultato, frazionale);
-            break;
-        case 6:
-            risultato = 0;
-            printf("%f^%d=%f\n", a, (int)b, risultato);
-            break;
-        default:
-            puts("Nuove oprazioni saranno disponibili a breve!\n");        
-    }
-    return (EXIT_SUCCESS);
 }
